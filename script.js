@@ -21,7 +21,11 @@
 // 5️⃣ Use that number as an index to pick from the choices array.
 // 6️⃣ Return the choice.
 
+
 function getComputerChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomIndex = Math.floor(Math.random() * 3);
+    return choices[randomIndex];
     // ✍️ Write your code here following the steps above
 }
 
@@ -40,8 +44,22 @@ function getComputerChoice() {
 // Use if-else ladder
 
 function determineWinner(userChoice, computerChoice) {
+    if(userChoice == computerChoice){
+        return("Its a Tie!")
+    } else if(userChoice == "paper" && computerChoice == "rock"){
+        return(`User beats Computer using paper`);
+        
+    } else if(userChoice == "scissors" && computerChoice == "paper"){
+        return(`User beats Computer using scissors`);
+
+    } else if(userChoice == "rock" && computerChoice == "scissors"){
+        return(`User beats Computer using rock`);
+
+    } else {
+        return(`computer beats user`);    
+    }
+    } 
     // ✍️ Write your comparison logic here
-}
 
 
 
@@ -57,6 +75,14 @@ function determineWinner(userChoice, computerChoice) {
 //     - Final result message
 
 function playGame(userChoice) {
+     const computerChoice = getComputerChoice();
+    const resultMessage = determineWinner(userChoice, computerChoice);
+
+    const resultChoice = document.getElementById("result");
+    resultChoice.innerHTML = `
+    <p>You chose: <strong>${getEmoji(userChoice)}</strong></p>
+    <p>Computer chose: <strong>${getEmoji(computerChoice)}</strong></p>
+    <p>${resultMessage}</p>`
     // ✍️ Your code here
 }
 
@@ -71,5 +97,16 @@ function playGame(userChoice) {
 // using if-else ladder or switch statement(check w3schools for switch)
 
 function getEmoji(choice) {
+    switch (choice) {
+        case "rock":
+            return "🪨";
+        case "paper":
+            return "📃";
+        case "scissors":
+            return "✂️";
+            default:
+                emoji = "❓";
+    }
+   
     // ✍️ Write your switch() logic here
 }
